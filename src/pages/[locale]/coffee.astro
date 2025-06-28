@@ -1,0 +1,99 @@
+---
+import { fetchSSRJSON } from "../../lib/fetchSSR";
+import { Image } from "astro:assets";
+
+let coffees: Array<{
+  title: string;
+  description: string;
+  ingredients: string[];
+  image: string;
+}> = [];
+
+let errorMsg: string | null = null;
+
+try {
+  // Получаем список горячих кофейных напитков с timeout 5 секунд
+  coffees = await fetchSSRJSON(
+    '/cached/1-asdas-12'
+  );
+} catch (err: any) {
+  console.error('[coffee.astro] fetch error:', err);
+  errorMsg = err.message;
+}
+---
+
+<html lang="ru">
+  <head>
+    		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+    <title>Hot Coffee Menu</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        background: #f7f7f7;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+      .card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+      .card-content {
+        padding: 1rem;
+        flex: 1;
+      }
+      .card h2 {
+        margin: 0 0 0.5rem;
+        font-size: 1.25rem;
+      }
+      .card p {
+        margin: 0 0 1rem;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        color: #555;
+      }
+      .ingredients {
+        font-size: 0.85rem;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hot Coffee Menu</h1>
+
+    {errorMsg ? (
+      <p style="color: red;">Ошибка: {errorMsg}</p>
+    ) : (
+      <div class="grid">
+        {coffees.map((c, index) => (
+          <div class="card">
+            {c.image && <Image src={c.image} alt={c.title} width={322} height={180} loading={index > 1 ? "lazy" : "eager"} decoding={index < 2 ? "async" : "auto"} />}
+            <div class="card-content">
+              <h2>{c.title}</h2>
+              <p>{c.description}</p>
+              <p class="ingredients">
+                <strong>Ингредиенты:</strong> {c.ingredients.join(', ')}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </body>
+</html>
