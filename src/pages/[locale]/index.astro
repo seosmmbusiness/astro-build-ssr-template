@@ -2,18 +2,15 @@
 import Welcome from '../../components/Welcome.astro';
 import Layout from '../../layouts/Layout.astro';
 
-import { defaultLocale, locales } from '../../i18n/config';
-import { translations } from '../../i18n/translate';
+import { defaultLocale } from '../../i18n/config';
+import { initI18n } from '../../i18n/initI18n';
 
-const { locale } = Astro.params;
-
-if (!locale || !locales.includes(locale)) {
-	Astro.redirect(`/${defaultLocale}/`);
-} 
-
-const t = await translations(locale);
+const { locale, t, redirect } = await initI18n(Astro.params);
+if (redirect) {
+	return Astro.redirect(`/${defaultLocale}`);
+}
 ---
 
-<Layout locale={locale} t={t}>
+<Layout>
 	<Welcome />
 </Layout>

@@ -53,8 +53,9 @@ export const GET: APIRoute = async ({ params, request }) => {
   }
 
   try {
-    // const targetUrl = `${apiBase.replace(/\/$/, '')}/${urlPath}${qs ? `?${qs}` : ''}`;
-    const res = await fetch(apiBase, {
+    const targetUrl = `${apiBase.replace(/\/$/, '')}/${urlPath}${qs ? `?${qs}` : ''}`;
+    console.log(`Fetching API: ${targetUrl} with cache key: ${cacheKey}`);
+    const res = await fetch(targetUrl, {
       headers: { Accept: 'application/json' },
     });
 

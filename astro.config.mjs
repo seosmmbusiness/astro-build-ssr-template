@@ -7,12 +7,12 @@ import { i18n } from './src/i18n/config';
 import tailwindcss from '@tailwindcss/vite';
 import { loadEnv } from 'vite';
 
-const { ASTRO_DOMAIN, ASTRO_REDIS_URL } = loadEnv(
+const { ASTRO_DOMAIN, ASTRO_REDIS_URL, ASTRO_PORT } = loadEnv(
   process.env.NODE_ENV || '',
   process.cwd(),
   ''
 );
-
+export const port = Number(ASTRO_PORT) ?? 4321;
 export const DOMAIN = ASTRO_DOMAIN;
 export const SITE = `http://${DOMAIN}` || 'https://example.com';
 
@@ -21,7 +21,7 @@ export default defineConfig({
   site: SITE,
   integrations: [partytown()],
   output: 'server',
-
+  server: { port },
   session: {
     // The name of the Unstorage driver
     driver: 'redis',

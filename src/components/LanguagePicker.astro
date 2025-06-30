@@ -1,0 +1,21 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { locales } from "../i18n/config";
+
+const pathname = Astro.url.pathname;
+const language = pathname.split("/")[1] || "en"; // Default to 'en' if no language is specified
+const basePath = pathname.replace(`/${language}`, ""); // Remove the language prefix to get the base path
+const localeUrls = locales.map((locale) => {
+  const url = getRelativeLocaleUrl(locale, basePath);
+  return { lang: locale, url };
+});
+
+---
+
+<ul class="flex flex-row gap-2">
+  {localeUrls.map(({ lang, url }) => (
+    <li>
+      <a href={`${url}`}>{lang}</a>
+    </li>
+  ))}
+</ul>

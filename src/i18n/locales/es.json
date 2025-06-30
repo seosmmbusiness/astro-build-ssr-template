@@ -1,1 +1,6 @@
-{}
+{
+      "coffee": {
+         "title": "Menú de café caliente",
+    "ingredients": "ingredientes"
+  }
+}

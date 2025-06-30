@@ -1,6 +1,15 @@
 ---
+import { defaultLocale, locales } from "../../i18n/config";
+import { initI18n } from "../../i18n/initI18n";
+import { translations } from "../../i18n/translate";
+import Layout from "../../layouts/Layout.astro";
 import { fetchSSRJSON } from "../../lib/fetchSSR";
 import { Image } from "astro:assets";
+
+const { locale, t, redirect } = await initI18n(Astro.params);
+if (redirect) {
+	return Astro.redirect(`/${defaultLocale}`);
+}
 
 let coffees: Array<{
   title: string;
@@ -14,33 +23,44 @@ let errorMsg: string | null = null;
 try {
   // Получаем список горячих кофейных напитков с timeout 5 секунд
   coffees = await fetchSSRJSON(
-    '/cached/1-asdas-12'
+    '/coffee/hot'
   );
 } catch (err: any) {
   console.error('[coffee.astro] fetch error:', err);
   errorMsg = err.message;
 }
+
 ---
+<Layout locale={locale} t={t}>
+  <section class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">{t.coffee.title}</h1>
 
-<html lang="ru">
-  <head>
-    		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+    {errorMsg ? (
+      <p style="color: red;">Ошибка: {errorMsg}</p>
+    ) : (
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
+        {coffees.map((c, index) => (
+          <div class="card">
+            {c.image && <Image src={c.image} alt={c.title} width={322} height={180} loading={index > 1 ? "lazy" : "eager"} decoding={index < 2 ? "async" : "auto"} />}
+            <div class="card-content">
+              <h2>{c.title}</h2>
+              <p>{c.description}</p>
+              <p class="ingredients">
+                <strong>{t.coffee.ingredients}:</strong> {c.ingredients.join(', ')}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </section>  
+	 
+</Layout>
 
-    <title>Hot Coffee Menu</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        padding: 2rem;
-        background: #f7f7f7;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.5rem;
-      }
+   
+
+<style>
+
       .card {
         background: #fff;
         border-radius: 8px;
@@ -73,27 +93,3 @@ try {
         color: #333;
       }
     </style>
-  </head>
-  <body>
-    <h1>Hot Coffee Menu</h1>
-
-    {errorMsg ? (
-      <p style="color: red;">Ошибка: {errorMsg}</p>
-    ) : (
-      <div class="grid">
-        {coffees.map((c, index) => (
-          <div class="card">
-            {c.image && <Image src={c.image} alt={c.title} width={322} height={180} loading={index > 1 ? "lazy" : "eager"} decoding={index < 2 ? "async" : "auto"} />}
-            <div class="card-content">
-              <h2>{c.title}</h2>
-              <p>{c.description}</p>
-              <p class="ingredients">
-                <strong>Ингредиенты:</strong> {c.ingredients.join(', ')}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    )}
-  </body>
-</html>

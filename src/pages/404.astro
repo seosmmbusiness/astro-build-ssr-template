@@ -1,23 +1,15 @@
----
-import Header from '../components/Header.astro';
-import '../styles/global.css'
-import { initI18n } from '../i18n/initI18n';
 
-const { locale, t } = await initI18n(Astro.params);
-
----
 <!doctype html>
-<html lang={locale}>
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{t.title}</title>
+		<title>404</title>
   		<link rel="sitemap" href="/sitemap-index.xml" />
 	</head>
 	<body>
-		<Header />	
 		<slot />
 	</body>
 </html>

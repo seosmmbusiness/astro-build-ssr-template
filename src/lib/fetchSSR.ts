@@ -42,7 +42,7 @@ export async function fetchSSR(
     !/^https?:\/\//.test(urlString)
   ) {
     const path = urlString.replace(/^\//, '');
-    urlString = `${siteUrl}/api/${path}`;
+    urlString = `${siteUrl}/api/cached/${path}`;
     input = urlString;
   }
 

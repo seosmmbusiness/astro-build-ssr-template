@@ -1,4 +1,17 @@
 {
   "title": "Welcome",
-  "description": "This is the homepage"
+  "description": "This is the homepage",
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "coffee": "Coffee"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Learn more about our coffee shop"
+  },
+  "coffee": {
+    "title": "Hot Coffee Menu",
+    "ingredients": "Coffee"
+  }
 }
