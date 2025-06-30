@@ -1,5 +1,11 @@
 # Astro Starter Kit: Basics
 
+- i18n
+- SSR
+- SSR sitemap
+- Inner API for caching thirdparty requests
+- Caching REDIS
+
 ```sh
 npm create astro@latest -- --template basics
 ```
