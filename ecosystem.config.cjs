@@ -9,7 +9,7 @@ module.exports = {
    */
   apps: [
     {
-      name: process.env.APP_NAME + ' 1' || 'Template Astro',
+      name: (process.env.APP_NAME || 'Template Astro') + ' 1',
       namespace: process.env.APP_NAMESPACE || 'AstroTemplate',
       script: 'npm',
       args: 'run start',
@@ -24,7 +24,7 @@ module.exports = {
       },
     },
     {
-      name: process.env.APP_NAME + ' 2' || 'Template Astro 2',
+      name: (process.env.APP_NAME || 'Template Astro') + ' 2',
       namespace: process.env.APP_NAMESPACE || 'AstroTemplate',
       script: 'npm',
       args: 'run start',
