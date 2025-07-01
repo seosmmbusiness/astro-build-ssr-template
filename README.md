@@ -6,6 +6,30 @@
 - Inner API for caching thirdparty requests
 - Caching REDIS
 
+NGINX
+
+```http {
+	# Upstream for astro
+	upstream astro_upstream {
+		server 127.0.0.1:4321;
+    	server 127.0.0.1:4322;
+	}
+}
+
+server {
+    proxy_set_header Host $host;
+	proxy_set_header X-Real-IP $remote_addr;
+	proxy_set_header X-Forwarded-Proto $scheme;
+	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	proxy_set_header Authorization $http_authorization;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    location / {
+		proxy_pass http://astro_upstream;
+    }
+}
+```
+
 ```sh
 npm create astro@latest -- --template basics
 ```
