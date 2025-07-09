@@ -1,5 +1,5 @@
 import type { Translations } from '../../types/i18n/translations';
-import { defaultLocale, locales } from './config';
+import { defaultLocale, locales } from '@/i18n/config';
 
 export const translations = async (locale?: string): Promise<Translations> => {
   const fallbackTranslates: Translations = await import(

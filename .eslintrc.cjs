@@ -1,17 +1,17 @@
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser', // если используете TS
+  parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended', // если TS
-    'plugin:astro/recommended',            // правила для Astro
-    'plugin:prettier/recommended'          // интеграция с Prettier
+    'plugin:@typescript-eslint/recommended',
+    'plugin:astro/recommended',
+    'plugin:prettier/recommended',
   ],
   plugins: ['@typescript-eslint', 'prettier'],
   env: {
     browser: true,
     node: true,
-    es2021: true
+    es2021: true,
   },
   overrides: [
     {
@@ -19,12 +19,11 @@ module.exports = {
       parser: 'astro-eslint-parser',
       parserOptions: {
         parser: '@typescript-eslint/parser',
-        extraFileExtensions: ['.astro']
-      }
-    }
+        extraFileExtensions: ['.astro'],
+      },
+    },
   ],
   rules: {
-    // ваши дополнительные правила
-    'prettier/prettier': 'error'
-  }
+    'prettier/prettier': 'error',
+  },
 };

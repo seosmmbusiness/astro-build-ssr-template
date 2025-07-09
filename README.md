@@ -8,11 +8,12 @@
 
 NGINX
 
-```http {
+```
+http {
 	# Upstream for astro
-	upstream astro_upstream {
-		server 127.0.0.1:4321;
-    	server 127.0.0.1:4322;
+	upstream tramlin_upstream {
+		server 127.0.0.1:4421;
+    	server 127.0.0.1:4422;
 	}
 }
 
@@ -25,7 +26,7 @@ server {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection 'upgrade';
     location / {
-		proxy_pass http://astro_upstream;
+		proxy_pass http://tramlin_upstream;
     }
 }
 ```

@@ -1,7 +1,8 @@
 {
   "title": "Добро пожаловать",
-    "coffee": {
-       "title": "Меню горячего кофе",
-    "ingredients": "Ингредиенты"
+  "comingSoon": "Уже скоро",
+  "coffee": {
+    "title": "Кофее",
+    "ingredients": "Ингридиенты"
   }
 }

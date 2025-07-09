@@ -1,0 +1,29 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { locales } from '@/i18n/config';
+
+const pathname = Astro.url.pathname;
+const language = pathname.split('/')[1] || 'en';
+const basePath = pathname.replace(`/${language}`, '');
+
+const localeUrls = locales.map((locale) => {
+  const url = getRelativeLocaleUrl(locale, basePath);
+  return { lang: locale, url };
+});
+const isCurrentLocale = (locale: string) => {
+  return locale === language;
+};
+const { class: className, ...rest } = Astro.props;
+---
+
+<ul class:list={['flex flex-row gap-2 uppercase text-white ', className]}>
+  {
+    localeUrls.map(({ lang, url }) => (
+      <li class="hover:text-red-500">
+        <a href={`${url}`} class={isCurrentLocale(lang) ? 'font-bold' : ''}>
+          {lang}
+        </a>
+      </li>
+    ))
+  }
+</ul>

@@ -1,0 +1,54 @@
+---
+import Link from '@/components/Ui/Link.astro';
+import { defaultLocale } from '../../i18n/config';
+import { translations } from '../../i18n/translate';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import ThemeSwitcher from '@/components/Ui/ThemeSwitcher.astro';
+
+let { locale } = Astro.params;
+
+if (!locale) {
+  locale = defaultLocale;
+}
+
+const t = await translations(locale);
+
+const home = getRelativeLocaleUrl(locale, '');
+const coffee = getRelativeLocaleUrl(locale, '/coffee');
+const contact = getRelativeLocaleUrl(locale, '/contact');
+---
+
+<header
+  x-data="{ isSticky: false }"
+  x-init="() => {
+    const offset = $el.offsetTop;
+    window.addEventListener('scroll', () => {
+      isSticky = window.pageYOffset > offset;
+    });
+  }"
+  :class="`fixed top-0 w-full z-50 transition-colors ${isSticky ? 'bg-base-300/80 shadow-md' : 'bg-base-300/30'}`"
+>
+  <div class="mx-auto flex max-w-7xl items-center justify-between">
+    <div class="flex flex-1">
+      <Link href={home} class="-m-1.5 p-1.5">
+        <span class="sr-only">Tramlin</span>
+        <img
+          class="h-8 w-auto"
+          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+          alt=""
+        />
+      </Link>
+    </div>
+    <nav
+      class="flex max-w-items-center justify-between p-6 lg:px-8"
+      aria-label="Global"
+    >
+      <div class="flex gap-2 lg:gap-x-12">
+        <Link href={coffee} class="text-sm/6 font-bold">Coffee</Link>
+        <Link href={contact} class="text-sm/6 font-bold">Contact</Link>
+      </div>
+    </nav>
+    <ThemeSwitcher />
+  </div>
+</header>
+<script></script>

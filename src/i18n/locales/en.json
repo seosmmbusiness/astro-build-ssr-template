@@ -1,17 +1,23 @@
 {
   "title": "Welcome",
   "description": "This is the homepage",
+  "company": "Company",
+  "comingSoon": "Coming Soon",
   "navigation": {
     "home": "Home",
     "about": "About",
     "coffee": "Coffee"
   },
+  "coffee": {
+    "title": "Coffee",
+    "ingredients": "Ingredients"
+  },
   "about": {
     "title": "About Us",
     "description": "Learn more about our coffee shop"
   },
-  "coffee": {
-    "title": "Hot Coffee Menu",
-    "ingredients": "Coffee"
+  "contact": {
+    "title": "Send us a message",
+    "description": "Learn more about our coffee shop"
   }
 }

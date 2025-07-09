@@ -1,16 +1,38 @@
 ---
-import Welcome from '../../components/Welcome.astro';
-import Layout from '../../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
+import { initI18n } from '@/i18n/initI18n';
+import { Picture } from 'astro:assets';
 
-import { defaultLocale } from '../../i18n/config';
-import { initI18n } from '../../i18n/initI18n';
-
-const { locale, t, redirect } = await initI18n(Astro.params);
+import localBirdImage from '@/assets/maintenance.jpg';
+import LanguagePicker from '@/components/Ui/LanguagePicker.astro';
+const { locale, t, redirect, defaultLocale } = await initI18n(Astro.params);
 if (redirect) {
-	return Astro.redirect(`/${defaultLocale}`);
+  return Astro.redirect(`/${defaultLocale}`);
 }
 ---
 
 <Layout>
-	<Welcome />
+  <section
+    class="bg-white relative dark:bg-gray-800 h-full min-h-svh flex flex-col items-center justify-center"
+  >
+    <Picture
+      src={localBirdImage}
+      alt="Title"
+      loading="eager"
+      fetchpriority="high"
+      formats={['avif', 'webp']}
+      class="absolute inset-0 w-full h-full object-cover z-0"
+    />
+
+    <div class="z-10 relative text-center">
+      <h1
+        class="text-3xl lg:text-6xl font-bold mb-4 text-white text-shadow-lg/30"
+      >
+        {t.company}
+      </h1>
+      <h2 class="text-2xl font-bold pt-8 text-white text-shadow-lg/30">
+        {t.comingSoon}
+      </h2>
+    </div>
+  </section>
 </Layout>

@@ -12,14 +12,23 @@
     "pm2:stop": "pm2 stop ecosystem.config.cjs"
   },
   "dependencies": {
+    "@alpinejs/collapse": "^3.14.9",
+    "@alpinejs/intersect": "^3.14.9",
+    "@alpinejs/persist": "^3.14.9",
+    "@astrojs/alpinejs": "^0.4.8",
     "@astrojs/node": "^9.2.2",
     "@astrojs/partytown": "^2.1.4",
-    "@tailwindcss/vite": "^4.1.10",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/alpinejs": "^3.13.11",
+    "@types/alpinejs__collapse": "^3.13.4",
+    "@types/alpinejs__intersect": "^3.13.4",
+    "@types/alpinejs__persist": "^3.13.4",
+    "alpinejs": "^3.14.9",
     "astro": "^5.10.1",
     "astro-seo": "^0.8.4",
     "globby": "^14.1.0",
     "ioredis": "^5.6.1",
-    "tailwindcss": "^4.1.10"
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
     "@types/ioredis": "^4.28.10",

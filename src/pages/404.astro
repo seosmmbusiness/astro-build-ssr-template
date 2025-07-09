@@ -1,24 +1,11 @@
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>404</title>
-  		<link rel="sitemap" href="/sitemap-index.xml" />
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import Layout from '../layouts/Layout.astro';
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<Layout>
+	<section class="h-screen flex items-center justify-center">
+		<h1 class="text-2xl font-bold mb-4">404 - Page Not Found</h1>
+	</section>
+</Layout>
+

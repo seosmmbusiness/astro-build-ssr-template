@@ -1,18 +1,40 @@
 {
-  // Форматирование при сохранении (Prettier)
+  // 1. Форматирование через Prettier при сохранении
   "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // 2. Указываем Prettier как форматтер для конкретных языков
   "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   },
   "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // 3. Валидация ESLint
   "eslint.validate": [
     "javascript",
+    "javascriptreact",
     "typescript",
+    "typescriptreact",
     "astro"
-  ]
+  ],
+
+  // 4. Применять все доступные код-действия ESLint при сохранении
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // 5. Настройки для разрешения импортов через алиасы
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative"
 }

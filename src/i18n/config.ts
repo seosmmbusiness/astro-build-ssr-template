@@ -1,4 +1,4 @@
-export const locales = ['es', 'en', 'ru'];
+export const locales = ['en', 'ru'];
 export const defaultLocale = 'en';
 
 export const i18n = {

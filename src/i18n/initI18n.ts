@@ -1,5 +1,5 @@
-import { defaultLocale, locales } from '../i18n/config';
-import { translations } from '../i18n/translate';
+import { defaultLocale, locales } from '@/i18n/config';
+import { translations } from '@/i18n/translate';
 
 export async function initI18n(params: Record<string, any>) {
   let locale = params.locale;
@@ -11,5 +11,5 @@ export async function initI18n(params: Record<string, any>) {
 
   const t = await translations(locale);
 
-  return { locale, t, redirect };
+  return { locale, t, redirect, defaultLocale };
 }

@@ -1,1 +1,123 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@theme inline {
+  --font-sans: var(--font-roboto);
+}
+/* 2) Базовая (светлая) тема — все переменные по умолчанию */
+/* https://daisyui.com/theme-generator/#theme=eJx1k-tu3CAQhV8FWarUSFnE1UDfBtvjrBXWrMBW01Z59xCcrNnF_WdmvjmHmcH_mtleoPnVdOulc9ABNM9N750Pp9ifIafc9HJeUvh02hKdjXCihKSUf3X9-Wf6_oEIIk-PECsgo44ZXjLsmOn9vMC83DhW-13DdLHhzw3RMiGYGoMMxYa3B2wlKz7tMTESSYUV0WVNhEQPpYPaHDRHUiYHcUjXHiRXMY64xlSxssr2fYnWTW5ApXk0_xnWJVh3Y7jKvVHUKiylPkArWbONg3AkNFZUlTXTPPp9EiL31CLGGW5b-ghWytxsg0ZMEKzV3XLimpqMcRdvs7hSiLYcM8YP4Npg6zYXaWzudvPbhnmaX_aXwrY9GqQFFswcsPUWaa6hDIm0e3KnDyH4sF9_27ehiDHMaFuR_xkOFalCYvXdb7DDtMb0sBz0S9anAS5lapzADSlOsHzIdP6t5OP0F0ohgpm8y-1Ke6LzYYBse33LgQGuy_kTyqfZTxG-TgOMdnWpodG6CM_NNcAIIabf4fUr9v4BZZhINA */
+@theme {
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97% 0 0);
+  --color-base-300: oklch(92% 0 0);
+  --color-base-content: oklch(20% 0 0);
+  --color-primary: oklch(85% 0.199 91.936);
+  --color-primary-content: oklch(42% 0.095 57.708);
+  --color-secondary: oklch(75% 0.183 55.934);
+  --color-secondary-content: oklch(40% 0.123 38.172);
+  --color-accent: oklch(0% 0 0);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(37% 0.01 67.558);
+  --color-neutral-content: oklch(92% 0.003 48.717);
+  --color-info: oklch(74% 0.16 232.661);
+  --color-info-content: oklch(39% 0.09 240.876);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(70% 0.191 22.216);
+  --color-error-content: oklch(39% 0.141 25.723);
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+}
+
+/* 3) Переопределяем те же переменные для тёмной темы */
+/* https://daisyui.com/theme-generator/#theme=eJyVlNuOmzAQQH8FIVVqpc3I9vjav3HANGgJjmyibnfVf69jlo0T_NJHz8zhmJmBj3a2Z9f-bPvx3L60nZ98OMTu5NagDa8pejis8aON7kAJSRn_OnWn70hAC_WtIUAYNkxyoNz8eCZYQTANBGUmqFkJzXYEloQE5J-ETgQDqtSO6Py8uHn5ojQDQ2imkDaMpaN4uNkljGcb_twBCRTxBlBOG4oGBK8BOxNVwNh6P6ZrYHQJ6UuXQkAlskuKBgWgwCqxl3GQK0kQK6TturJc8XQ3k0W3ckqT1-zraxrNVw2TNW521yXY6T4kDgrXdrM8VWJ4pf7_xzTOgy9nRJReZ5Q0RD4vz626OiAqtgFVqHhNXYjxYRUU3TRUShDIK0DVhPxrFfbgbxvmcf71YJK4mUzqOtWV-rqIbaI950LwoWwyp7ltxJgGEZSQu-q9QwLXuH2pJRVsP15j2tLJdUv20ODOZWoY3dSnOAHxlDn6t7I-ju-ufBABJh5y9yfdE0cfepe1l7cc6N1lOd2K8mn2Y3Sfp94N9jqllxrsFN1LewlucCHm_9oa-_sPu8xiMw */
+@layer theme {
+  :root,
+  :host {
+    @variant dark {
+      --color-base-100: oklch(14% 0.005 285.823);
+      --color-base-200: oklch(21% 0.006 285.885);
+      --color-base-300: oklch(27% 0.006 286.033);
+      --color-base-content: oklch(96% 0.001 286.375);
+      --color-primary: oklch(64% 0.2 131.684);
+      --color-primary-content: oklch(98% 0.031 120.757);
+      --color-secondary: oklch(54% 0.281 293.009);
+      --color-secondary-content: oklch(96% 0.016 293.756);
+      --color-accent: oklch(0% 0 0);
+      --color-accent-content: oklch(100% 0 0);
+      --color-neutral: oklch(27% 0.006 286.033);
+      --color-neutral-content: oklch(98% 0 0);
+      --color-info: oklch(70% 0.165 254.624);
+      --color-info-content: oklch(28% 0.091 267.935);
+      --color-success: oklch(76% 0.177 163.223);
+      --color-success-content: oklch(26% 0.051 172.552);
+      --color-warning: oklch(82% 0.189 84.429);
+      --color-warning-content: oklch(27% 0.077 45.635);
+      --color-error: oklch(70% 0.191 22.216);
+      --color-error-content: oklch(25% 0.092 26.042);
+      --radius-selector: 0.25rem;
+      --radius-field: 0.5rem;
+      --radius-box: 0.25rem;
+    }
+  }
+}
+
+@layer components {
+  .link {
+    @apply text-base-content hover:text-secondary;
+  }
+  .link-active {
+    @apply text-primary-content hover:text-secondary;
+  }
+  .btn {
+    @apply block px-3 py-2 opacity-75 hover:opacity-100 rounded-selector;
+  }
+  .btn-primary {
+    @apply block px-3 py-2 opacity-75 hover:opacity-100 bg-primary text-primary-content;
+  }
+  .card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    @apply flex flex-col rounded-box shadow-md bg-base-200;
+
+    & img {
+      @apply w-full h-auto aspect-video object-cover object-center;
+    }
+  }
+  .card-content {
+    flex: 1;
+    @apply text-base-content p-2;
+    & h2 {
+      @apply text-base-content;
+      margin: 0 0 0.5rem;
+      font-size: 1.25rem;
+    }
+    & p {
+      @apply text-base-content;
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+  }
+  .input {
+    @apply flex flex-col gap-2;
+
+    & input {
+      @apply border border-base-300 rounded-field py-0.5 px-2 text-base-content;
+      &:focus,
+      &:focus-visible {
+        @apply outline outline-secondary outline-offset-1;
+      }
+    }
+    & textarea {
+      @apply border border-base-300 rounded-field py-0.5 px-2  text-base-content;
+      &:focus,
+      &:focus-visible {
+        @apply outline outline-secondary outline-offset-1;
+      }
+    }
+  }
+}

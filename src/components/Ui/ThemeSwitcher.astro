@@ -1,0 +1,17 @@
+---
+import Light from '@/assets/images/light.svg';
+import Dark from '@/assets/images/dark.svg';
+import { getThemeCookie } from '@/helper/theme';
+const { initOn } = getThemeCookie(Astro);
+---
+
+<button x-data @click="$store.darkMode.toggle()" class="cursor-pointer link">
+  <Light
+    x-show="$store.darkMode.on"
+    style=`display:${initOn ? 'block' : 'none'}`
+  />
+  <Dark
+    x-show="!$store.darkMode.on"
+    style=`display:${initOn ? 'none' : 'block'}`
+  />
+</button>

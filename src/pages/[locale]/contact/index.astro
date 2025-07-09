@@ -1,0 +1,65 @@
+---
+import { defaultLocale } from '@/i18n/config';
+import { initI18n } from '@/i18n/initI18n';
+import Layout from '@/layouts/Layout.astro';
+
+const { locale, t, redirect } = await initI18n(Astro.params);
+if (redirect) {
+  return Astro.redirect(`/${defaultLocale}`);
+}
+const isValidEmail = (text: string) => {
+  return true;
+};
+const errors = { name: '', email: '', message: '' };
+
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData();
+    const name = data.get('name');
+    const email = data.get('email');
+    const message = data.get('message');
+
+    if (typeof name !== 'string' || name.length < 1) {
+      errors.name += 'Please enter a name. ';
+    }
+    if (typeof email !== 'string' || !isValidEmail(email)) {
+      errors.email += 'Email is not valid. ';
+    }
+    if (typeof message !== 'string' || message.length < 1) {
+      errors.name += 'Please enter a name. ';
+    }
+    const hasErrors = Object.values(errors).some((msg) => msg);
+    if (!hasErrors) {
+      return Astro.redirect('/contact');
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+
+<Layout>
+  <section class="h-screen flex flex-col gap-2 items-center justify-center">
+    <h1 class="text-2xl font-bold mb-4">{t.contact.title}</h1>
+    <form method="POST" class="flex flex-col gap-2">
+      <label class="input">
+        Name
+        <input type="text" id="name" name="name" required />
+      </label>
+      {errors.name && <p>{errors.name}</p>}
+      <label class="input">
+        Email
+        <input type="email" id="email" name="email" required />
+      </label>
+      {errors.email && <p>{errors.email}</p>}
+      <label class="input">
+        Message
+        <textarea id="message" name="message" required class=""></textarea>
+      </label>
+      {errors.message && <p>{errors.message}</p>}
+      <button class="btn btn-primary">Send</button>
+    </form>
+  </section>
+</Layout>
